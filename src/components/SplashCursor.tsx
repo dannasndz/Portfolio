@@ -54,16 +54,16 @@ function pointerPrototype(): Pointer {
 
 export default function SplashCursor({
   SIM_RESOLUTION = 128,
-  DYE_RESOLUTION = 1440,
+  DYE_RESOLUTION = 512,
   CAPTURE_RESOLUTION = 512,
   DENSITY_DISSIPATION = 3.5,
   VELOCITY_DISSIPATION = 10,
   PRESSURE = 0.1,
-  PRESSURE_ITERATIONS = 20,
+  PRESSURE_ITERATIONS = 10,
   CURL = 3,
   SPLAT_RADIUS = 0.1,
   SPLAT_FORCE = 6000,
-  SHADING = true,
+  SHADING = false,
   COLOR_UPDATE_SPEED = 10,
   BACK_COLOR = { r: 0.9, g: 0, b: 0 },
   TRANSPARENT = true
@@ -853,6 +853,7 @@ export default function SplashCursor({
     let lastUpdateTime = Date.now();
     let colorUpdateTimer = 0.0;
 
+    let rafId: number;
     function updateFrame() {
       const dt = calcDeltaTime();
       if (resizeCanvas()) initFramebuffers();
@@ -860,7 +861,7 @@ export default function SplashCursor({
       applyInputs();
       step(dt);
       render(null);
-      requestAnimationFrame(updateFrame);
+      rafId = requestAnimationFrame(updateFrame);
     }
 
     function calcDeltaTime() {
@@ -1263,6 +1264,7 @@ export default function SplashCursor({
     window.addEventListener('touchend', onTouchEnd);
 
     return () => {
+      cancelAnimationFrame(rafId);
       window.removeEventListener('mousedown', onMouseDown);
       window.removeEventListener('mousemove', onMouseMove);
       window.removeEventListener('touchstart', onTouchStart);
@@ -1287,7 +1289,7 @@ export default function SplashCursor({
   ]);
 
   return (
-    <div className="absolute inset-0 z-10 pointer-events-none">
+    <div className="fixed inset-0 z-10 pointer-events-none">
       <canvas ref={canvasRef} id="fluid" className="w-full h-full block"></canvas>
     </div>
   );

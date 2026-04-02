@@ -1,5 +1,4 @@
 import Link from "next/link";
-import SplashCursor from "@/components/SplashCursor";
 
 export default function Contact() {
     return (
@@ -7,7 +6,6 @@ export default function Contact() {
             id="contact"
             className="relative overflow-hidden bg-background-secondary px-6 py-20 sm:px-10 sm:py-28 lg:px-8 lg:py-32"
         >
-            <SplashCursor />
             <div
                 aria-hidden="true"
                 className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 h-[50vh] w-[60vw] rounded-full bg-primary/8 blur-[140px]"

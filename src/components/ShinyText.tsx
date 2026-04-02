@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect, useRef } from 'react';
+import React, { useState, useCallback, useEffect, useRef, useMemo } from 'react';
 import { motion, useMotionValue, useAnimationFrame, useTransform } from 'motion/react';
 
 interface ShinyTextProps {
@@ -34,11 +34,16 @@ const ShinyText: React.FC<ShinyTextProps> = ({
   const lastTimeRef = useRef<number | null>(null);
   const directionRef = useRef(direction === 'left' ? 1 : -1);
 
+  const prefersReducedMotion = useMemo(() => {
+    if (typeof window === 'undefined') return false;
+    return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  }, []);
+
   const animationDuration = speed * 1000;
   const delayDuration = delay * 1000;
 
   useAnimationFrame(time => {
-    if (disabled || isPaused) {
+    if (disabled || isPaused || prefersReducedMotion) {
       lastTimeRef.current = null;
       return;
     }
