@@ -1,3 +1,4 @@
+'use client'
 import Image from "next/image";
 import SplashCursor from '@/components/SplashCursor'
 
@@ -28,7 +29,7 @@ export default function Projects() {
                     className="opacity-40 absolute bottom-0 right-0"
                 />
 
-                <div className="relative flex flex-col sm:flex-row sm:items-start gap-5">
+                <div className="relative flex flex-col sm:flex-row sm:items-start gap-15">
                     {/* Image */}
 
                     <div className="relative shrink-0 overflow-hidden rounded-2xl sm:w-[48%]">
@@ -64,15 +65,13 @@ export default function Projects() {
 
             </div>
             {/* ── Ver más button ── */}
-            <div className="mt-16 flex justify-center sm:mt-20">
-                <button
-                    type="button"
-                    className="inline-flex items-center gap-2 rounded-2xl border border-primary/30 bg-background px-8 py-3.5 text-[0.9rem] font-semibold text-primary transition-colors duration-200 hover:border-primary/60 hover:bg-primary/5 sm:px-10 sm:py-4 sm:text-base"
-                >
-                    Ver más proyectos
-                    <span aria-hidden="true">→</span>
-                </button>
-            </div>
+            <button
+                type="button"
+                className="mt-16 mx-auto relative z-50 flex cursor-pointer items-center gap-2 rounded-2xl border border-primary/30 bg-background px-8 py-3.5 text-[0.9rem] font-semibold text-primary transition-colors duration-200 hover:border-primary/60 hover:bg-primary/5 sm:px-10 sm:py-4 sm:text-base"
+            >
+                Ver más proyectos
+                <span aria-hidden="true">→</span>
+            </button>
         </section>
     );
 }
