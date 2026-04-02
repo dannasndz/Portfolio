@@ -4,7 +4,7 @@ export default function Projects() {
     return (
         <section
             id="projects"
-            className="bg-background-secondary px-6 py-10 sm:px-10 sm:py-24 lg:px-10 lg:py-20"
+            className="relative overflow-hidden bg-background-secondary px-6 py-10 sm:px-10 sm:py-24 lg:px-10 lg:py-20"
         >
             <div className="mx-auto max-w-7xl">
                 {/* ── Section title ── */}
@@ -16,9 +16,28 @@ export default function Projects() {
                     </span>
                     .
                 </h2>
+                {/* Lirio decorativo — esquina inferior derecha */}
+                <Image
+                    src="/Lirio.png"
+                    alt=""
+                    aria-hidden="true"
+                    width={1007}
+                    height={977}
+                    className="opacity-40 absolute bottom-0 right-0"
+                />
 
+                <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute left-2 top-80 h-[60vh] w-[45vw] rounded-full bg-primary/20 blur-[120px]"
+                />
+                
+                <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute right-2 top-80 h-[60vh] w-[45vw] rounded-full bg-primary/20 blur-[120px]"
+                />
                 <div className="relative flex flex-col sm:flex-row sm:items-start gap-5">
                     {/* Image */}
+
                     <div className="relative shrink-0 overflow-hidden rounded-2xl sm:w-[48%]">
                         <Image
                             src="/Stilo.svg"
@@ -32,6 +51,7 @@ export default function Projects() {
                     </div>
 
                     {/* ──── Card 2 — Stilo (landscape desktop) ──── */}
+
                     <div className="flex ">
                         {/* Image */}
                         <div className="relative overflow-hidden rounded-2xl">
@@ -47,6 +67,8 @@ export default function Projects() {
 
                     </div>
                 </div>
+
+
             </div>
             {/* ── Ver más button ── */}
             <div className="mt-16 flex justify-center sm:mt-20">

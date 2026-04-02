@@ -11,6 +11,10 @@ export default function Hero() {
                 aria-hidden="true"
                 className="pointer-events-none absolute -right-24 top-0 h-[60vh] w-[45vw] rounded-full bg-primary/10 blur-[120px]"
             />
+            <div
+                aria-hidden="true"
+                className="pointer-events-none absolute left-24 top-0 h-[60vh] w-[45vw] rounded-full bg-primary/10 blur-[120px]"
+            />
 
             <div className="mx-auto flex min-h-[calc(100dvh-3.5rem)] w-full max-w-7xl flex-col items-center gap-6 px-6 sm:min-h-[calc(100dvh-4rem)] sm:gap-8 sm:px-10 lg:flex-row lg:items-center lg:gap-8   lg:px-8">
                 {/* Text — below photo on mobile, left on desktop */}
@@ -27,7 +31,7 @@ export default function Hero() {
                         <span className="mt-1 block sm:mt-2">digitales que</span>
                         <span className="mt-1 block sm:mt-2">
                             florecen con{" "}
-                            <span className="text-rosa-bajito">lógica</span>.
+                            <span className="text-accent">lógica</span>.
                         </span>
                     </h1>
 
