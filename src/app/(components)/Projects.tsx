@@ -1,4 +1,5 @@
 import Image from "next/image";
+import SplashCursor from '@/components/SplashCursor'
 
 export default function Projects() {
     return (
@@ -6,6 +7,7 @@ export default function Projects() {
             id="projects"
             className="relative overflow-hidden bg-background-secondary px-6 py-10 sm:px-10 sm:py-24 lg:px-10 lg:py-20"
         >
+            <SplashCursor />
             <div className="mx-auto max-w-7xl">
                 {/* ── Section title ── */}
                 <h2 className="mb-5 lg:mb-10 text-[2rem] font-black leading-[1.05] tracking-tight text-secondary sm:mb-20 sm:text-[2.8rem] md:text-[3.4rem] lg:text-[4rem]">
@@ -26,15 +28,6 @@ export default function Projects() {
                     className="opacity-40 absolute bottom-0 right-0"
                 />
 
-                <div
-                    aria-hidden="true"
-                    className="pointer-events-none absolute left-2 top-80 h-[60vh] w-[45vw] rounded-full bg-primary/20 blur-[120px]"
-                />
-                
-                <div
-                    aria-hidden="true"
-                    className="pointer-events-none absolute right-2 top-80 h-[60vh] w-[45vw] rounded-full bg-primary/20 blur-[120px]"
-                />
                 <div className="relative flex flex-col sm:flex-row sm:items-start gap-5">
                     {/* Image */}
 
