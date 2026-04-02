@@ -61,23 +61,17 @@ export default function Navbar() {
                 </div>
 
                 <div className="hidden items-center gap-2.5 md:flex">
-                    <span
-                        aria-hidden="true"
-                        className="flex h-8 w-8 items-center justify-center rounded-full border border-foreground/12 text-foreground/60"
+                    <a
+                        href="/cv.pdf"
+                        download
+                        className="inline-flex items-center gap-1.5 rounded-2xl bg-secondary px-4 py-2 text-[0.8rem] font-bold text-background transition-transform duration-200 hover:-translate-y-0.5"
                     >
-                        <svg
-                            viewBox="0 0 24 24"
-                            className="h-3.5 w-3.5"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="1.8"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                        >
-                            <path d="m12 3 1.6 4.4L18 9l-4.4 1.6L12 15l-1.6-4.4L6 9l4.4-1.6L12 3Z" />
-                            <path d="m18.5 15 .8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8.8-2.2Z" />
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-3.5 w-3.5">
+                            <path d="M10.75 2.75a.75.75 0 0 0-1.5 0v8.614L6.295 8.235a.75.75 0 1 0-1.09 1.03l4.25 4.5a.75.75 0 0 0 1.09 0l4.25-4.5a.75.75 0 0 0-1.09-1.03l-2.955 3.129V2.75Z" />
+                            <path d="M3.5 12.75a.75.75 0 0 0-1.5 0v2.5A2.75 2.75 0 0 0 4.75 18h10.5A2.75 2.75 0 0 0 18 15.25v-2.5a.75.75 0 0 0-1.5 0v2.5c0 .69-.56 1.25-1.25 1.25H4.75c-.69 0-1.25-.56-1.25-1.25v-2.5Z" />
                         </svg>
-                    </span>
+                        CV
+                    </a>
                     <ThemeToggle />
                 </div>
 
@@ -113,7 +107,18 @@ export default function Navbar() {
                             {item.label}
                         </Link>
                     ))}
-                    <div className="mt-2 flex items-center gap-2.5 border-t border-foreground/6 px-4 pt-4">
+                    <div className="mt-2 flex items-center gap-3 border-t border-foreground/6 px-4 pt-4">
+                        <a
+                            href="/cv.pdf"
+                            download
+                            className="inline-flex items-center gap-1.5 rounded-2xl bg-secondary px-4 py-2 text-[0.8rem] font-bold text-background transition-transform duration-200 hover:-translate-y-0.5"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-3.5 w-3.5">
+                                <path d="M10.75 2.75a.75.75 0 0 0-1.5 0v8.614L6.295 8.235a.75.75 0 1 0-1.09 1.03l4.25 4.5a.75.75 0 0 0 1.09 0l4.25-4.5a.75.75 0 0 0-1.09-1.03l-2.955 3.129V2.75Z" />
+                                <path d="M3.5 12.75a.75.75 0 0 0-1.5 0v2.5A2.75 2.75 0 0 0 4.75 18h10.5A2.75 2.75 0 0 0 18 15.25v-2.5a.75.75 0 0 0-1.5 0v2.5c0 .69-.56 1.25-1.25 1.25H4.75c-.69 0-1.25-.56-1.25-1.25v-2.5Z" />
+                            </svg>
+                            CV
+                        </a>
                         <ThemeToggle />
                     </div>
                 </div>
