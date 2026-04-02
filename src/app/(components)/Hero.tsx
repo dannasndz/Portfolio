@@ -1,5 +1,7 @@
+'use client'
 import Link from "next/link";
 import Image from "next/image";
+import ShinyText from "@/components/ShinyText";
 
 export default function Hero() {
     return (
@@ -25,9 +27,22 @@ export default function Hero() {
 
                     <h1 className="font-black leading-[0.92] tracking-tight text-secondary text-[2.2rem] min-[380px]:text-[2.6rem] min-[420px]:text-[3rem] sm:text-[3.6rem] md:text-[4.4rem] lg:text-[3.8rem] xl:text-[4.8rem]">
                         Construyo
-                        <span className="mt-1 block font-serif text-[0.9em] font-medium italic leading-[1.08] text-primary sm:mt-2">
+                        <br />
+                        <ShinyText
+                            text="experiencias"
+                            speed={3}
+                            delay={0}
+                            color="var(--color-primary)"
+                            shineColor="#ffffff"
+                            spread={120}
+                            direction="left"
+                            yoyo={false}
+                            pauseOnHover={false}
+                            disabled={false}
+                        />
+                        {/* <span className="mt-1 block font-serif text-[0.9em] font-medium italic leading-[1.08] sm:mt-2">
                             experiencias
-                        </span>
+                        </span> */}
                         <span className="mt-1 block sm:mt-2">digitales que</span>
                         <span className="mt-1 block sm:mt-2">
                             florecen con{" "}
@@ -44,7 +59,7 @@ export default function Hero() {
                     <div className="mt-6 flex flex-row items-center gap-3 sm:mt-8 sm:gap-4">
                         <Link
                             href="#projects"
-                            className="inline-flex items-center justify-center gap-2 rounded-2xl bg-secondary px-5 py-3 text-[0.8rem] font-bold text-[#FDF7F8] transition-transform duration-200 hover:-translate-y-0.5 sm:px-7 sm:py-3.5 sm:text-[0.9rem]"
+                            className="inline-flex items-center justify-center gap-2 rounded-2xl bg-secondary px-5 py-3 text-[0.8rem] font-bold text-background transition-colors duration-200 hover:bg-primary sm:px-7 sm:py-3.5 sm:text-[0.9rem]"
                         >
                             Explorar mi trabajo
                             <span aria-hidden="true">→</span>
@@ -53,7 +68,7 @@ export default function Hero() {
                             href="https://www.linkedin.com/in/dannasandez/"
                             target="_blank"
                             rel="noreferrer"
-                            className="inline-flex items-center justify-center gap-2 rounded-2xl border border-rosa-bajito bg-background px-5 py-3 text-[0.8rem] font-semibold text-primary transition-colors duration-200 hover:border-primary/50 sm:px-7 sm:py-3.5 sm:text-[0.9rem]"
+                            className="inline-flex items-center justify-center gap-2 rounded-2xl  border border-primary/30 bg-background px-8 py-3.5 text-[0.85rem] font-semibold text-primary transition-colors duration-200 hover:border-primary/60 hover:bg-primary/5 sm:px-7 sm:py-3.5 sm:text-[0.9rem]"
                         >
                             <span className="flex h-5 w-5 items-center justify-center rounded bg-primary text-[0.5rem] font-bold leading-none text-background">
                                 in

@@ -1,6 +1,11 @@
 'use client'
 import Image from "next/image";
 import SplashCursor from '@/components/SplashCursor'
+import SplitText from "@/components/SplitText";
+
+const handleAnimationComplete = () => {
+    console.log('All letters have animated!');
+};
 
 export default function Projects() {
     return (
@@ -10,15 +15,38 @@ export default function Projects() {
         >
             <SplashCursor />
             <div className="mx-auto max-w-7xl">
+
                 {/* ── Section title ── */}
-                <h2 className="mb-5 lg:mb-10 text-[2rem] font-black leading-[1.05] tracking-tight text-secondary sm:mb-20 sm:text-[2.8rem] md:text-[3.4rem] lg:text-[4rem]">
-                    El Jardín de la
-                    <br />
-                    <span className="font-serif font-medium italic text-primary">
-                        Ingeniería
-                    </span>
-                    .
-                </h2>
+                <SplitText
+                    text="El Jardín de la"
+                    className="mb-0 text-[2rem] font-black leading-[1.05] tracking-tight text-secondary sm:text-[2.8rem] md:text-[3.4rem] lg:text-[4rem]"
+                    delay={50}
+                    duration={1.25}
+                    ease="power3.out"
+                    splitType="chars"
+                    from={{ opacity: 0, y: 40 }}
+                    to={{ opacity: 1, y: 0 }}
+                    threshold={0.1}
+                    rootMargin="-100px"
+                    textAlign="center"
+                    onLetterAnimationComplete={handleAnimationComplete}
+                />
+                <br />
+                <SplitText
+                    text="Ingeniería."
+                    className="mb-9 sm:mb-14 lg:mb-16 text-[2rem] font-serif font-medium italic leading-[1.05] tracking-tight text-primary sm:text-[2.8rem] md:text-[3.4rem] lg:text-[4rem]"
+                    delay={50}
+                    duration={1.25}
+                    ease="power3.out"
+                    splitType="chars"
+                    from={{ opacity: 0, y: 40 }}
+                    to={{ opacity: 1, y: 0 }}
+                    threshold={0.1}
+                    rootMargin="-100px"
+                    textAlign="center"
+                    onLetterAnimationComplete={handleAnimationComplete}
+                />
+
                 {/* Lirio decorativo — esquina inferior derecha */}
                 <Image
                     src="/Lirio.png"
@@ -30,8 +58,8 @@ export default function Projects() {
                 />
 
                 <div className="relative flex flex-col sm:flex-row sm:items-start gap-20">
-                    {/* Image */}
 
+                    {/* ── Card 1 — Stilo ── */}
                     <div className="relative shrink-0 overflow-hidden rounded-2xl sm:w-[48%]">
                         <Image
                             src="/Stilo.svg"
@@ -41,13 +69,10 @@ export default function Projects() {
                             className="h-auto w-full"
                             priority
                         />
-
                     </div>
 
-                    {/* ──── Card 2 — Stilo (landscape desktop) ──── */}
 
-                    <div className="flex ">
-                        {/* Image */}
+                    <div className="flex">
                         <div className="relative overflow-hidden rounded-2xl">
                             <Image
                                 src="/Onda.svg"
@@ -58,20 +83,10 @@ export default function Projects() {
                                 priority
                             />
                         </div>
-
                     </div>
+
                 </div>
-
-
             </div>
-            {/* ── Ver más button ── */}
-            <button
-                type="button"
-                className="mt-16 mx-auto relative z-50 flex cursor-pointer items-center gap-2 rounded-2xl border border-primary/30 bg-background px-8 py-3.5 text-[0.9rem] font-semibold text-primary transition-colors duration-200 hover:border-primary/60 hover:bg-primary/5 sm:px-10 sm:py-4 sm:text-base"
-            >
-                Ver más proyectos
-                <span aria-hidden="true">→</span>
-            </button>
-        </section>
+        </section >
     );
 }

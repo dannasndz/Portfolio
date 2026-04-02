@@ -20,14 +20,13 @@ export interface SplitTextProps {
   tag?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span';
   textAlign?: React.CSSProperties['textAlign'];
   onLetterAnimationComplete?: () => void;
-  initialDelay?: number;
 }
 
 const SplitText: React.FC<SplitTextProps> = ({
   text,
   className = '',
-  delay = 100,
-  duration = 0.6,
+  delay = 50,
+  duration = 1.25,
   ease = 'power3.out',
   splitType = 'chars',
   from = { opacity: 0, y: 40 },
@@ -36,12 +35,17 @@ const SplitText: React.FC<SplitTextProps> = ({
   rootMargin = '-100px',
   tag = 'p',
   textAlign = 'center',
-  onLetterAnimationComplete,
-  initialDelay = 0
+  onLetterAnimationComplete
 }) => {
   const ref = useRef<HTMLParagraphElement>(null);
   const animationCompletedRef = useRef(false);
+  const onCompleteRef = useRef(onLetterAnimationComplete);
   const [fontsLoaded, setFontsLoaded] = useState<boolean>(false);
+
+  // Keep callback ref updated
+  useEffect(() => {
+    onCompleteRef.current = onLetterAnimationComplete;
+  }, [onLetterAnimationComplete]);
 
   useEffect(() => {
     if (document.fonts.status === 'loaded') {
@@ -56,6 +60,8 @@ const SplitText: React.FC<SplitTextProps> = ({
   useGSAP(
     () => {
       if (!ref.current || !text || !fontsLoaded) return;
+      // Prevent re-animation if already completed
+      if (animationCompletedRef.current) return;
       const el = ref.current as HTMLElement & {
         _rbsplitInstance?: GSAPSplitText;
       };
@@ -103,7 +109,6 @@ const SplitText: React.FC<SplitTextProps> = ({
               ...to,
               duration,
               ease,
-              delay: initialDelay,
               stagger: delay / 1000,
               scrollTrigger: {
                 trigger: el,
@@ -114,7 +119,7 @@ const SplitText: React.FC<SplitTextProps> = ({
               },
               onComplete: () => {
                 animationCompletedRef.current = true;
-                onLetterAnimationComplete?.();
+                onCompleteRef.current?.();
               },
               willChange: 'transform, opacity',
               force3D: true
@@ -144,9 +149,7 @@ const SplitText: React.FC<SplitTextProps> = ({
         JSON.stringify(to),
         threshold,
         rootMargin,
-        fontsLoaded,
-        onLetterAnimationComplete,
-        initialDelay
+        fontsLoaded
       ],
       scope: ref
     }
@@ -156,62 +159,16 @@ const SplitText: React.FC<SplitTextProps> = ({
     const style: React.CSSProperties = {
       textAlign,
       wordWrap: 'break-word',
-      willChange: 'transform, opacity',
-      paddingTop: '0.5rem',
-      paddingBottom: '0.5rem',
-      display: 'inline-block'
+      willChange: 'transform, opacity'
     };
-    const classes = `split-parent overflow-visible whitespace-normal ${className}`;
-    switch (tag) {
-      case 'h1':
-        return (
-          <h1 ref={ref} style={style} className={classes}>
-            {text}
-          </h1>
-        );
-      case 'h2':
-        return (
-          <h2 ref={ref} style={style} className={classes}>
-            {text}
-          </h2>
-        );
-      case 'h3':
-        return (
-          <h3 ref={ref} style={style} className={classes}>
-            {text}
-          </h3>
-        );
-      case 'h4':
-        return (
-          <h4 ref={ref} style={style} className={classes}>
-            {text}
-          </h4>
-        );
-      case 'h5':
-        return (
-          <h5 ref={ref} style={style} className={classes}>
-            {text}
-          </h5>
-        );
-      case 'h6':
-        return (
-          <h6 ref={ref} style={style} className={classes}>
-            {text}
-          </h6>
-        );
-      case 'span':
-        return (
-          <span ref={ref as React.RefObject<HTMLSpanElement>} style={style} className={classes}>
-            {text}
-          </span>
-        );
-      default:
-        return (
-          <p ref={ref} style={style} className={classes}>
-            {text}
-          </p>
-        );
-    }
+    const classes = `split-parent overflow-hidden inline-block whitespace-normal ${className}`;
+    const Tag = (tag || 'p') as React.ElementType;
+
+    return (
+      <Tag ref={ref} style={style} className={classes}>
+        {text}
+      </Tag>
+    );
   };
 
   return renderTag();
