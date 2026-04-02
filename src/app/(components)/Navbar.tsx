@@ -1,17 +1,18 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import ThemeToggle from "@/components/ThemeButton";
 
 const navItems = [
-    { label: "Proyectos", href: "#projects" },
-    { label: "Sobre mí", href: "#about" },
-    { label: "Contacto", href: "#contact" },
+    { label: "Proyectos", href: "#projects", sectionId: "projects" },
+    { label: "Sobre mí", href: "#about", sectionId: "about" },
+    { label: "Contacto", href: "#contact", sectionId: "contact" },
 ];
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
+    const [activeSection, setActiveSection] = useState<string>("");
 
     useEffect(() => {
         const handleResize = () => {
@@ -26,38 +27,70 @@ export default function Navbar() {
         return () => { document.body.style.overflow = ""; };
     }, [isOpen]);
 
+    useEffect(() => {
+        const sectionIds = navItems.map(item => item.sectionId);
+        const observer = new IntersectionObserver(
+            (entries) => {
+                const visible = entries
+                    .filter(e => e.isIntersecting)
+                    .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+
+                if (visible.length > 0) {
+                    setActiveSection(visible[0].target.id);
+                }
+            },
+            { rootMargin: "-40% 0px -40% 0px", threshold: [0, 0.25, 0.5] }
+        );
+
+        sectionIds.forEach(id => {
+            const el = document.getElementById(id);
+            if (el) observer.observe(el);
+        });
+
+        return () => observer.disconnect();
+    }, []);
+
+    const handleNavClick = useCallback((sectionId: string) => {
+        setActiveSection(sectionId);
+        setIsOpen(false);
+    }, []);
+
     return (
         <header className="fixed inset-x-0 top-0 z-50 border-b border-foreground/8 bg-background/90 backdrop-blur-xl transition-colors duration-300">
-            <nav className="mx-auto flex max-w-7xl min-h-[var(--navbar-height)] items-center justify-between px-6 py-4 sm:px-10 md:px-14 lg:px-20 xl:px-28">
+            <nav className="mx-auto flex max-w-7xl min-h-(--navbar-height) items-center justify-between px-6 py-4 sm:px-10 md:px-14 lg:px-20 xl:px-28">
                 <Link
                     href="#hero"
-                    onClick={() => setIsOpen(false)}
+                    onClick={() => { setActiveSection(""); setIsOpen(false); }}
                     className="shrink-0 text-lg font-bold tracking-tight flex items-center text-foreground transition-opacity duration-200 hover:opacity-80 sm:text-xl"
                 >
                     Danna Sandez
                 </Link>
 
                 <div className="hidden items-center gap-8 md:flex">
-                    {navItems.map((item, i) => (
-                        <Link
-                            key={item.href}
-                            href={item.href}
-                            className={`group relative pb-1 text-[0.95rem] font-semibold transition-colors duration-200 ${
-                                i === 0
-                                    ? "text-foreground"
-                                    : "text-foreground/65 hover:text-foreground"
-                            }`}
-                        >
-                            {item.label}
-                            <span
-                                className={`absolute inset-x-0 -bottom-px h-[1.5px] rounded-full bg-foreground transition-transform duration-200 origin-left ${
-                                    i === 0
-                                        ? "scale-x-100"
-                                        : "scale-x-0 group-hover:scale-x-100"
+                    {navItems.map((item) => {
+                        const isActive = activeSection === item.sectionId;
+                        return (
+                            <Link
+                                key={item.href}
+                                href={item.href}
+                                onClick={() => handleNavClick(item.sectionId)}
+                                className={`group relative pb-1 text-[0.95rem] font-semibold transition-colors duration-200 ${
+                                    isActive
+                                        ? "text-foreground"
+                                        : "text-foreground/65 hover:text-foreground"
                                 }`}
-                            />
-                        </Link>
-                    ))}
+                            >
+                                {item.label}
+                                <span
+                                    className={`absolute inset-x-0 -bottom-px h-[1.5px] rounded-full bg-foreground transition-transform duration-200 origin-left ${
+                                        isActive
+                                            ? "scale-x-100"
+                                            : "scale-x-0 group-hover:scale-x-100"
+                                    }`}
+                                />
+                            </Link>
+                        );
+                    })}
                 </div>
 
                 <div className="hidden items-center gap-2.5 md:flex">
@@ -97,16 +130,23 @@ export default function Navbar() {
                 }`}
             >
                 <div className="flex flex-col gap-1 px-6 py-4 sm:px-10">
-                    {navItems.map((item) => (
-                        <Link
-                            key={item.href}
-                            href={item.href}
-                            onClick={() => setIsOpen(false)}
-                            className="rounded-xl px-4 py-3 text-base font-medium text-foreground/80 transition-colors duration-200 hover:bg-foreground/5 hover:text-foreground"
-                        >
-                            {item.label}
-                        </Link>
-                    ))}
+                    {navItems.map((item) => {
+                        const isActive = activeSection === item.sectionId;
+                        return (
+                            <Link
+                                key={item.href}
+                                href={item.href}
+                                onClick={() => handleNavClick(item.sectionId)}
+                                className={`rounded-xl px-4 py-3 text-base font-medium transition-colors duration-200 ${
+                                    isActive
+                                        ? "bg-foreground/5 text-foreground font-semibold"
+                                        : "text-foreground/80 hover:bg-foreground/5 hover:text-foreground"
+                                }`}
+                            >
+                                {item.label}
+                            </Link>
+                        );
+                    })}
                     <div className="mt-2 flex items-center gap-3 border-t border-foreground/6 px-4 pt-4">
                         <a
                             href="/cv.pdf"
