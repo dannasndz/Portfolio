@@ -1,6 +1,7 @@
 'use client'
 import Image from "next/image";
 import { useTheme } from "next-themes";
+import { useState, useEffect } from "react";
 import SplashCursor from '@/components/SplashCursor'
 import SplitText from "@/components/SplitText";
 
@@ -10,7 +11,18 @@ const handleAnimationComplete = () => {
 
 export default function Projects() {
     const { resolvedTheme } = useTheme();
-    const isDark = resolvedTheme === 'dark';
+    const [mounted, setMounted] = useState(false);
+    const [stiloLoaded, setStiloLoaded] = useState(false);
+    const [ondaLoaded, setOndaLoaded] = useState(false);
+
+    useEffect(() => setMounted(true), []);
+
+    useEffect(() => {
+        setStiloLoaded(false);
+        setOndaLoaded(false);
+    }, [resolvedTheme]);
+
+    const isDark = mounted && resolvedTheme === 'dark';
 
     return (
         <section
@@ -65,26 +77,29 @@ export default function Projects() {
 
                     {/* ── Card 1 — Stilo ── */}
                     <div className="relative shrink-0 overflow-hidden rounded-2xl sm:w-[48%]">
+                        {!stiloLoaded && <div className="absolute inset-0 animate-pulse rounded-2xl bg-foreground/5" />}
                         <Image
                             src={isDark ? "/StiloD.svg" : "/Stilo.svg"}
                             alt="Stilo — plataforma musical"
                             width={400}
                             height={600}
-                            className="h-auto w-full"
+                            className={`h-auto w-full transition-opacity duration-500 ${stiloLoaded ? 'opacity-100' : 'opacity-0'}`}
                             priority
+                            onLoad={() => setStiloLoaded(true)}
                         />
                     </div>
 
-
                     <div className="flex">
                         <div className="relative overflow-hidden rounded-2xl">
+                            {!ondaLoaded && <div className="absolute inset-0 animate-pulse rounded-2xl bg-foreground/5" />}
                             <Image
                                 src={isDark ? "/OndaD.svg" : "/Onda.svg"}
                                 alt="Sistema Onda — gestión de outfits"
                                 width={400}
                                 height={400}
-                                className="h-auto w-full"
+                                className={`h-auto w-full transition-opacity duration-500 ${ondaLoaded ? 'opacity-100' : 'opacity-0'}`}
                                 priority
+                                onLoad={() => setOndaLoaded(true)}
                             />
                         </div>
                     </div>
