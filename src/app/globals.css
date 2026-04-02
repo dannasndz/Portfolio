@@ -1,40 +1,35 @@
 @import "tailwindcss";
 
-
-:root {
-  --navbar-height: 64px
-}
-
 @theme {
-  --color-background: #fdf7f8;
+  --color-background: #FDF7F8;
+  --color-background-secondary: #F6E5E9;
   --color-foreground: #2b1d20;
   --color-primary: #bd3650;
   --color-secondary: #112e11;
   --color-accent: #ebb1b8;
-  --color-tertiary: #ebb1b8;
   --font-serif: var(--font-playfair), Georgia, "Times New Roman", serif;
 }
 
+/* Dark mode — CSS custom properties override when .dark is on <html> */
 .dark {
-  @theme {
-    --color-background: #141014;
-    --color-foreground: #f2e8ea;
-    --color-primary: #d65d74;
-    --color-secondary: #8fbf8f;
-    --color-accent: #ebb1b8;
-    --color-tertiary: #ebb1b8;
-  }
+  --color-background: #141014;
+  --color-background-secondary: #1F1B1F;
+  --color-foreground: #f2e8ea;
+  --color-primary: #d65d74;
+  --color-secondary: #8fbf8f;
+  --color-accent: #c98a92;
 }
 
+*,
+*::before,
 
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
+html {
   scroll-behavior: smooth;
 }
 
 body {
+  max-width: 100vw;
+  overflow-x: hidden;
   background: var(--color-background);
   color: var(--color-foreground);
   transition: background-color 0.3s ease, color 0.3s ease;
