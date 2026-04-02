@@ -4,7 +4,7 @@ import Image from "next/image";
 export default function Hero() {
     return (
         <section
-            id="about"
+            id="hero"
             className="relative isolate min-h-dvh overflow-hidden  bg-background pt-14 sm:pt-16 lg:p-15"
         >
             <div

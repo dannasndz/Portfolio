@@ -5,9 +5,9 @@ import { useState, useEffect } from "react";
 import ThemeToggle from "@/components/ThemeButton";
 
 const navItems = [
-    { label: "About", href: "#about" },
-    { label: "Projects", href: "#projects" },
-    { label: "Contact", href: "#contact" },
+    { label: "Proyectos", href: "#projects" },
+    { label: "Sobre mí", href: "#about" },
+    { label: "Contacto", href: "#contact" },
 ];
 
 export default function Navbar() {
@@ -30,7 +30,7 @@ export default function Navbar() {
         <header className="fixed inset-x-0 top-0 z-50 border-b border-foreground/8 bg-background/90 backdrop-blur-xl transition-colors duration-300">
             <nav className="mx-auto flex max-w-7xl min-h-[var(--navbar-height)] items-center justify-between px-6 py-4 sm:px-10 md:px-14 lg:px-20 xl:px-28">
                 <Link
-                    href="#about"
+                    href="#hero"
                     onClick={() => setIsOpen(false)}
                     className="shrink-0 text-lg font-bold tracking-tight flex items-center text-foreground transition-opacity duration-200 hover:opacity-80 sm:text-xl"
                 >
