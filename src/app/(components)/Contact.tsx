@@ -29,7 +29,9 @@ export default function Contact() {
 
                 <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:mt-12 sm:flex-row sm:gap-5">
                     <Link
-                        href="mailto:dannasandez0@gmail.com"
+                        href="https://mail.google.com/mail/?view=cm&to=dannasandez0@gmail.com"
+                        target="_blank"
+                        rel="noreferrer"
                         className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-secondary px-8 py-3.5 text-[0.85rem] font-bold text-background transition-colors duration-200 hover:bg-primary sm:w-auto sm:px-10 sm:py-4 sm:text-[0.9rem]"
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-4 w-4">
