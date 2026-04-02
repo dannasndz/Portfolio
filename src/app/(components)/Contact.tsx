@@ -30,7 +30,7 @@ export default function Contact() {
                 <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:mt-12 sm:flex-row sm:gap-5">
                     <Link
                         href="mailto:dannasandez0@gmail.com"
-                        className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-secondary px-8 py-3.5 text-[0.85rem] font-bold text-background transition-transform duration-200 hover:-translate-y-0.5 sm:w-auto sm:px-10 sm:py-4 sm:text-[0.9rem]"
+                        className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-secondary px-8 py-3.5 text-[0.85rem] font-bold text-background transition-colors duration-200 hover:bg-primary sm:w-auto sm:px-10 sm:py-4 sm:text-[0.9rem]"
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-4 w-4">
                             <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3Z" />

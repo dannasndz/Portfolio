@@ -1,6 +1,7 @@
 import "./globals.css";
 import { Playfair_Display } from "next/font/google";
 import { ThemeProvider } from "../components/ThemeProvider";
+import Footer from "./(components)/Footer";
 import Navbar from "./(components)/Navbar";
 
 const playfair = Playfair_Display({
@@ -27,6 +28,7 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
           <Navbar />
           {children}
+          <Footer />
         </ThemeProvider>
       </body>
     </html>

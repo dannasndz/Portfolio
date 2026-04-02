@@ -1,4 +1,6 @@
+'use client'
 import CircularGallery from '@/components/CircularGallery'
+import SplitText from '@/components/SplitText'
 
 const galleryItems = [
     { image: '/img1.jpeg', text: 'ICPC' },
@@ -15,11 +17,63 @@ export default function More() {
             className="bg-background px-6 py-16 sm:px-10 sm:py-24 lg:px-8">
             <div className="mx-auto flex max-w-7xl flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
                 <h2 className="text-[2.4rem] font-black leading-[1.05] tracking-tight text-secondary sm:text-[3.2rem] md:text-[4rem] lg:text-[4.6rem]">
-                    Hola, soy
+                    <SplitText
+                        text="Hola, soy"
+                        className="text-secondary"
+                        tag="span"
+                        delay={50}
+                        duration={1.25}
+                        ease="power3.out"
+                        splitType="chars"
+                        from={{ opacity: 0, y: 40 }}
+                        to={{ opacity: 1, y: 0 }}
+                        threshold={0.1}
+                        rootMargin="-100px"
+                        textAlign="left"
+                    />
                     <br />
-                    <span className="text-secondary">{"{ "}</span>
-                    <span className="font-serif font-medium italic text-primary">Danna Sandez</span>
-                    <span className="text-secondary">{" }"}</span>
+                    <SplitText
+                        text="{ "
+                        className="text-secondary"
+                        tag="span"
+                        delay={50}
+                        duration={1.25}
+                        ease="power3.out"
+                        splitType="chars"
+                        from={{ opacity: 0, y: 40 }}
+                        to={{ opacity: 1, y: 0 }}
+                        threshold={0.1}
+                        rootMargin="-100px"
+                        textAlign="left"
+                    />
+                    <SplitText
+                        text="Danna Sandez"
+                        className="font-serif font-medium italic text-primary"
+                        tag="span"
+                        delay={50}
+                        duration={1.25}
+                        ease="power3.out"
+                        splitType="chars"
+                        from={{ opacity: 0, y: 40 }}
+                        to={{ opacity: 1, y: 0 }}
+                        threshold={0.1}
+                        rootMargin="-100px"
+                        textAlign="left"
+                    />
+                    <SplitText
+                        text=" }"
+                        className="text-secondary"
+                        tag="span"
+                        delay={50}
+                        duration={1.25}
+                        ease="power3.out"
+                        splitType="chars"
+                        from={{ opacity: 0, y: 40 }}
+                        to={{ opacity: 1, y: 0 }}
+                        threshold={0.1}
+                        rootMargin="-100px"
+                        textAlign="left"
+                    />
                 </h2>
 
                 <p className="max-w-md text-[0.9rem] leading-relaxed text-foreground/70 sm:text-base lg:max-w-lg lg:text-lg">

@@ -1,5 +1,6 @@
 'use client'
 import Image from "next/image";
+import { useTheme } from "next-themes";
 import SplashCursor from '@/components/SplashCursor'
 import SplitText from "@/components/SplitText";
 
@@ -8,6 +9,9 @@ const handleAnimationComplete = () => {
 };
 
 export default function Projects() {
+    const { resolvedTheme } = useTheme();
+    const isDark = resolvedTheme === 'dark';
+
     return (
         <section
             id="projects"
@@ -62,8 +66,8 @@ export default function Projects() {
                     {/* ── Card 1 — Stilo ── */}
                     <div className="relative shrink-0 overflow-hidden rounded-2xl sm:w-[48%]">
                         <Image
-                            src="/Stilo.svg"
-                            alt="Sistema Onda — gestión de outfits"
+                            src={isDark ? "/StiloD.svg" : "/Stilo.svg"}
+                            alt="Stilo — plataforma musical"
                             width={400}
                             height={600}
                             className="h-auto w-full"
@@ -75,8 +79,8 @@ export default function Projects() {
                     <div className="flex">
                         <div className="relative overflow-hidden rounded-2xl">
                             <Image
-                                src="/Onda.svg"
-                                alt="Stilo — plataforma musical"
+                                src={isDark ? "/OndaD.svg" : "/Onda.svg"}
+                                alt="Sistema Onda — gestión de outfits"
                                 width={400}
                                 height={400}
                                 className="h-auto w-full"
