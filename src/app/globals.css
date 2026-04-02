@@ -20,10 +20,8 @@
   --color-accent: #c98a92;
 }
 
-*,
-*::before,
-
 html {
+  --navbar-height: 64px;
   scroll-behavior: smooth;
 }
 
@@ -33,4 +31,10 @@ body {
   background: var(--color-background);
   color: var(--color-foreground);
   transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: 4px;
 }

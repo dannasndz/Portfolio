@@ -11,10 +11,28 @@ const playfair = Playfair_Display({
   weight: ["400", "500", "600", "700", "800"],
 });
 
-export const metadata = {
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
   title: "Danna Sandez | Portfolio",
   description:
     "Ingeniera en software enfocada en frontend, apasionada por crear experiencias digitales increíbles.",
+  metadataBase: new URL("https://nanna.dev"),
+  openGraph: {
+    title: "Danna Sandez | Portfolio",
+    description:
+      "Ingeniera en software enfocada en frontend, apasionada por crear experiencias digitales increíbles.",
+    url: "https://nanna.dev",
+    siteName: "Danna Sandez",
+    locale: "es_MX",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Danna Sandez | Portfolio",
+    description:
+      "Ingeniera en software enfocada en frontend, apasionada por crear experiencias digitales increíbles.",
+  },
 };
 
 export default function RootLayout({
@@ -27,7 +45,7 @@ export default function RootLayout({
       <body className="antialiased transition-colors duration-300">
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
           <Navbar />
-          {children}
+          <main id="main-content">{children}</main>
           <Footer />
         </ThemeProvider>
       </body>

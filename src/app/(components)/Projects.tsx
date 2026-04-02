@@ -1,25 +1,27 @@
 'use client'
 import Image from "next/image";
 import { useTheme } from "next-themes";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import SplashCursor from '@/components/SplashCursor'
 import SplitText from "@/components/SplitText";
 
-const handleAnimationComplete = () => {
-    console.log('All letters have animated!');
-};
+const handleAnimationComplete = () => {};
 
 export default function Projects() {
     const { resolvedTheme } = useTheme();
     const [mounted, setMounted] = useState(false);
     const [stiloLoaded, setStiloLoaded] = useState(false);
     const [ondaLoaded, setOndaLoaded] = useState(false);
+    const prevTheme = useRef<string | undefined>(undefined);
 
     useEffect(() => setMounted(true), []);
 
     useEffect(() => {
-        setStiloLoaded(false);
-        setOndaLoaded(false);
+        if (prevTheme.current !== undefined && prevTheme.current !== resolvedTheme) {
+            setStiloLoaded(false);
+            setOndaLoaded(false);
+        }
+        prevTheme.current = resolvedTheme;
     }, [resolvedTheme]);
 
     const isDark = mounted && resolvedTheme === 'dark';
@@ -33,35 +35,39 @@ export default function Projects() {
             <div className="mx-auto max-w-7xl">
 
                 {/* ── Section title ── */}
-                <SplitText
-                    text="El Jardín de la"
-                    className="mb-0 text-[2rem] font-black leading-[1.05] tracking-tight text-secondary sm:text-[2.8rem] md:text-[3.4rem] lg:text-[4rem]"
-                    delay={50}
-                    duration={1.25}
-                    ease="power3.out"
-                    splitType="chars"
-                    from={{ opacity: 0, y: 40 }}
-                    to={{ opacity: 1, y: 0 }}
-                    threshold={0.1}
-                    rootMargin="-100px"
-                    textAlign="center"
-                    onLetterAnimationComplete={handleAnimationComplete}
-                />
-                <br />
-                <SplitText
-                    text="Ingeniería."
-                    className="mb-6 sm:mb-14 lg:mb-16 text-[2rem] font-serif font-medium italic leading-[1.05] tracking-tight text-primary sm:text-[2.8rem] md:text-[3.4rem] lg:text-[4rem]"
-                    delay={50}
-                    duration={1.25}
-                    ease="power3.out"
-                    splitType="chars"
-                    from={{ opacity: 0, y: 40 }}
-                    to={{ opacity: 1, y: 0 }}
-                    threshold={0.1}
-                    rootMargin="-100px"
-                    textAlign="center"
-                    onLetterAnimationComplete={handleAnimationComplete}
-                />
+                <h2 className="text-center">
+                    <SplitText
+                        text="El Jardín de la"
+                        className="mb-0 text-[2rem] font-black leading-[1.05] tracking-tight text-secondary sm:text-[2.8rem] md:text-[3.4rem] lg:text-[4rem]"
+                        tag="span"
+                        delay={50}
+                        duration={1.25}
+                        ease="power3.out"
+                        splitType="chars"
+                        from={{ opacity: 0, y: 40 }}
+                        to={{ opacity: 1, y: 0 }}
+                        threshold={0.1}
+                        rootMargin="-100px"
+                        textAlign="center"
+                        onLetterAnimationComplete={handleAnimationComplete}
+                    />
+                    <br />
+                    <SplitText
+                        text="Ingeniería."
+                        className="mb-6 sm:mb-14 lg:mb-16 text-[2rem] font-serif font-medium italic leading-[1.05] tracking-tight text-primary sm:text-[2.8rem] md:text-[3.4rem] lg:text-[4rem]"
+                        tag="span"
+                        delay={50}
+                        duration={1.25}
+                        ease="power3.out"
+                        splitType="chars"
+                        from={{ opacity: 0, y: 40 }}
+                        to={{ opacity: 1, y: 0 }}
+                        threshold={0.1}
+                        rootMargin="-100px"
+                        textAlign="center"
+                        onLetterAnimationComplete={handleAnimationComplete}
+                    />
+                </h2>
 
                 {/* Lirio decorativo — esquina superior izquierda (solo desktop) */}
                 <Image
@@ -108,7 +114,7 @@ export default function Projects() {
                                 width={400}
                                 height={400}
                                 className={`h-auto w-full transition-opacity duration-500 ${ondaLoaded ? 'opacity-100' : 'opacity-0'}`}
-                                priority
+                                loading="lazy"
                                 onLoad={() => setOndaLoaded(true)}
                             />
                         </div>

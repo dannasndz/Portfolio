@@ -112,7 +112,7 @@ export default function Navbar() {
                     type="button"
                     onClick={() => setIsOpen(!isOpen)}
                     className="flex h-9 w-9 items-center justify-center rounded-full border border-foreground/12 text-foreground transition-colors duration-200 hover:text-primary md:hidden"
-                    aria-label="Abrir menú"
+                    aria-label={isOpen ? "Cerrar menú" : "Abrir menú"}
                     aria-expanded={isOpen}
                 >
                     <div className="flex w-4 flex-col items-center gap-[5px]">

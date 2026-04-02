@@ -1,6 +1,8 @@
 'use client'
 import CircularGallery from '@/components/CircularGallery'
 import SplitText from '@/components/SplitText'
+import { useTheme } from 'next-themes'
+import { useState, useEffect } from 'react'
 
 const galleryItems = [
     { image: '/img1.jpeg', text: 'ICPC' },
@@ -11,6 +13,11 @@ const galleryItems = [
 ]
 
 export default function More() {
+    const { resolvedTheme } = useTheme()
+    const [mounted, setMounted] = useState(false)
+    useEffect(() => setMounted(true), [])
+    const galleryTextColor = mounted && resolvedTheme === 'dark' ? '#d65d74' : '#D81B60'
+
     return (
         <section
             id="about"
@@ -86,11 +93,11 @@ export default function More() {
                 </p>
             </div>
 
-            <div className="mt-5 sm:mt-5 lg:mt-0" style={{ height: '600px', position: 'relative' }}>
+            <div className="relative mt-5 h-[50vh] min-h-[320px] max-h-[600px] sm:mt-5 lg:mt-0 lg:h-[600px]">
                 <CircularGallery
                     items={galleryItems}
                     bend={1}
-                    textColor="#D81B60"
+                    textColor={galleryTextColor}
                     borderRadius={0.05}
                     scrollEase={0.05}
                     scrollSpeed={2}
