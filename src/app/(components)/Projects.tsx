@@ -29,7 +29,7 @@ export default function Projects() {
                     className="opacity-40 absolute bottom-0 right-0"
                 />
 
-                <div className="relative flex flex-col sm:flex-row sm:items-start gap-15">
+                <div className="relative flex flex-col sm:flex-row sm:items-start gap-20">
                     {/* Image */}
 
                     <div className="relative shrink-0 overflow-hidden rounded-2xl sm:w-[48%]">
